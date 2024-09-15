@@ -1,0 +1,1131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QuizQuest - AI-Powered Learning Adventures!</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+      @import url("https://fonts.googleapis.com/css2?family=Pacifico&display=swap");
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+
+      ::-webkit-scrollbar {
+        width: 20px;
+        background: black;
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background: rgb(100, 36, 209);
+        border-radius: 10px;
+      }
+
+      ::-webkit-scrollbar-thumb:hover {
+        background: rgb(79, 0, 216);
+      }
+
+      body {
+        /* position: relative; */
+        height: 100vh;
+        width: 100%;
+        background: linear-gradient(to right, rgb(13, 0, 72), rgb(108, 0, 108));
+        overflow-y: scroll;
+      }
+
+      header {
+        /* position: absolute; */
+        display: flex;
+        flex-direction: row;
+        top: 0;
+        left: 0;
+        right: 0;
+        padding: 10px 60px;
+        justify-content: space-between;
+        background: linear-gradient(to right, rgb(13, 0, 72), rgb(108, 0, 108));
+      }
+
+      .logo-button {
+        border-style: none;
+        border-radius: 2px;
+        color: white;
+        padding: 7px 22px;
+        /* background: linear-gradient(
+          to right,
+          rgb(79, 0, 216),
+          rgb(100, 36, 209)
+        ); */
+      }
+
+      .logo-button a {
+        text-decoration: none;
+        color: white;
+        font-family: "Pacifico", cursive;
+        font-weight: 400;
+        font-style: normal;
+        font-size: 20px;
+      }
+
+      .rightside {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+      }
+
+      .header-button {
+        border-style: none;
+        border-radius: 2px;
+        color: white;
+        padding: 7px 22px;
+        background: transparent;
+        font-size: 16px;
+        transition: all 0.01s ease-in-out;
+      }
+
+      .header-button a:hover {
+        text-decoration: underline 4px rgb(79, 0, 216);
+        /* color: rgb(79, 0, 216); */
+      }
+
+      .header-button a {
+        text-decoration: none;
+        color: white;
+      }
+
+      main {
+        margin: 15px 45px;
+        /* position: relative; */
+        background: linear-gradient(
+          to right,
+          rgb(55, 103, 215),
+          rgb(220, 69, 220)
+        );
+        /* height: auto; */
+        min-height: 77.5vh;
+        width: 94%;
+        border-radius: 10px;
+        padding-bottom: 15px;
+      }
+
+      main .upper_content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .upper_content .start {
+        display: flex;
+        position: relative;
+      }
+
+      main .start .str {
+        margin: 20px;
+        width: 145px;
+        padding: 14px 0;
+        border-radius: 10px;
+        font-size: 18px;
+        border: none;
+        cursor: pointer;
+        transition: all 0.1s ease-out;
+        color: #fff;
+        /* margin: 13px 30px 0px 30px; */
+        font-size: 14px;
+      }
+
+      main .start .str:hover {
+        transform: scale(1.1);
+        cursor: pointer;
+      }
+
+      main .start .play {
+        /* padding: 10px 15px 10px 10px; */
+        text-align: center;
+        border-radius: 5px;
+        background: linear-gradient(to right, #2363f1 50%, #23b5f1);
+      }
+
+      main .start .share {
+        /* padding: 10px 15px 10px 10px; */
+        text-align: center;
+        border-radius: 5px;
+        background: linear-gradient(
+          to right,
+          rgb(255, 0, 225),
+          rgb(68, 234, 246)
+        );
+      }
+
+      main .start .delete {
+        /* padding: 10px 15px 10px 10px; */
+        text-align: center;
+        border-radius: 5px;
+        background: linear-gradient(to right, #ea0f85, #7f12c2);
+      }
+
+      main .start span i {
+        margin: 0px 0px 0px 11px;
+      }
+
+      main .info {
+        margin-top: 25px;
+        width: 87vw;
+      }
+
+      main .info .common {
+        padding: 12px;
+        background: #fff;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-radius: 5px;
+        cursor: default;
+      }
+
+      main .info .common div {
+        display: flex;
+      }
+
+      main .info .second_info {
+        margin-top: 15px;
+      }
+      main .question {
+        margin: auto;
+        width: 88vw;
+      }
+      main .question .total {
+        margin-top: 30px;
+        color: white;
+      }
+      main .question ul {
+        display: flex;
+        justify-content: space-between;
+      }
+      main .question ul li {
+        list-style: none;
+      }
+      .question .Q_first {
+        margin-top: 15px;
+        background: rgb(13, 0, 72);
+        border-radius: 8px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding-bottom: 10px;
+      }
+      .question .inside_1 ul {
+        margin: 20px;
+      }
+      .question .Q_first ul li {
+        color: #fff;
+      }
+      .question .inside {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: #fff;
+        width: 87vw;
+        margin: auto;
+        margin-top: 10px;
+        padding: 11px;
+        border-radius: 5px;
+        height: 40px;
+      }
+
+      .inside div {
+        display: flex;
+        align-items: center;
+      }
+
+      .inside div b {
+        width: 100px;
+      }
+
+      .inside div div {
+        padding: 5px;
+      }
+
+      .question .inside img {
+        background-color: white;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      .question .correct {
+        display: flex;
+        align-items: center;
+        width: 87vw;
+        margin: auto;
+        margin-top: 5px;
+        margin-bottom: 5px;
+        padding: 11px;
+        border-radius: 5px;
+        height: 40px;
+        cursor: pointer;
+      }
+      .question .correct a {
+        text-decoration: none;
+        color: #fff;
+      }
+      .question .correct i {
+        color: #fff;
+        margin-left: 10px;
+      }
+      .question .Q_first .pad:hover {
+        cursor: default;
+        color: #fff;
+        background: #000;
+      }
+      footer {
+        /* position: absolute;
+        bottom: 0;
+        left: 0; */
+        margin-top: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #fff;
+        background: linear-gradient(
+          to right,
+          rgb(55, 103, 215),
+          rgb(220, 69, 220)
+        );
+        height: 50px;
+        width: 100%;
+      }
+
+      .btn {
+        margin: 0 20px;
+        width: 145px;
+        padding: 14px 0;
+        border-radius: 10px;
+        font-size: 18px;
+        border: none;
+        cursor: pointer;
+        transition: all 0.1s ease-out;
+      }
+
+      .hidden {
+        display: none;
+      }
+
+      .str a {
+        text-decoration: none;
+        color: white;
+      }
+
+      .question-form {
+        /* margin: auto; */
+        width: 88vw;
+        margin-top: 15px;
+        background: rgb(13, 0, 72);
+        border-radius: 8px;
+        display: none;
+        /* display: flex; */
+        flex-direction: column;
+        /* justify-content: space-between; */
+        padding: 10px 5px;
+      }
+
+      .question-form .form-heading {
+        padding: 10px 0;
+        text-align: center;
+        font-size: 24px;
+        color: #fff;
+      }
+      .inside-form {
+        display: flex;
+        align-items: center;
+        background: #fff;
+        width: 95%;
+        margin: auto;
+        margin-top: 10px;
+        padding: 11px;
+        border-radius: 5px;
+        height: 40px;
+      }
+
+      .inside-form label {
+        min-width: 100px;
+      }
+
+      .question-form .inside-form-points {
+        display: flex;
+        align-items: center;
+        background: #fff;
+        width: 170px;
+        margin-left: 2.5%;
+        margin-top: 10px;
+        padding: 11px;
+        border-radius: 5px;
+        height: 40px;
+      }
+
+      .question-form .inside-form label {
+        margin: auto 0;
+      }
+
+      .form-input {
+        width: 88%;
+        padding: 2px 10px;
+        font-size: 16px;
+        font-weight: 500;
+      }
+
+      #correctChoice-input {
+        width: 84.3%;
+      }
+
+      .inside-form:nth-child(8) {
+        width: 180px;
+      }
+
+      #points-input {
+        width: 50%;
+      }
+
+      .plusbtn {
+        width: 88vw;
+        height: 40px;
+        background-color: #0d0048;
+        margin: 20px 0;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 32px;
+        cursor: pointer;
+      }
+
+      .form-btns {
+        margin: auto;
+        margin-top: 12px;
+      }
+
+      .form-btns button {
+        margin: 0 20px;
+        width: 120px;
+        padding: 10px 0;
+        border-radius: 10px;
+        font-size: 18px;
+        font-weight: bold;
+        color: white;
+        border: none;
+        cursor: pointer;
+        transition: all 0.1s ease-out;
+      }
+
+      .form-btns button:hover {
+        transform: scale(1.1);
+      }
+
+      #save-btn {
+        background: #9c27b0;
+      }
+
+      #cancel-btn {
+        background-color: #e91e63;
+      }
+
+      .plusbtn {
+        width: 100%;
+        height: 40px;
+        background-color: #0d0048;
+        margin: 20px 0;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 32px;
+        cursor: pointer;
+      }
+
+      .edit-form {
+        display: flex;
+        align-items: center;
+        background: #fff;
+        width: 95%;
+        margin: auto;
+        margin-top: 10px;
+        padding: 11px;
+        border-radius: 5px;
+        height: 40px;
+      }
+
+      .edit-form label {
+        min-width: 90px;
+      }
+
+      .edit-icons-box img {
+        margin-left: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="logo-button">
+        <a href="/">QuizQuest</a>
+      </div>
+      <div class="rightside">
+        <div>
+          <button class="header-button">
+            <a href="/user/logout">Logout</a>
+          </button>
+        </div>
+        <div>
+          <button class="header-button">
+            <a href="/quiz">Quizzes</a>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <div class="upper_content">
+        <div class="start">
+          <div title="Play Quiz" class="str play">
+            <a href="/quiz/play/<%= quizId %>"
+              ><span>Play Quiz</span>
+              <span><i class="fa-solid fa-play"></i></span
+            ></a>
+          </div>
+          <div title="Show leaderboard" class="str share">
+            <a href="/quiz/play/leaderboard/<%= quizId %>"
+              ><span>leaderboard</span>
+              <span><i class="fa-solid fa-share-from-square"></i></span
+            ></a>
+          </div>
+          <% if (isCreator) { %>
+          <div title="Delete Quiz" class="str delete">
+            <a href="/quiz/delete/<%= quizId %>"
+              ><span>Delete Quiz</span>
+              <span><i class="fa-solid fa-trash"></i></span
+            ></a>
+          </div>
+          <% } %>
+        </div>
+
+        <% if (locals.isCreator) { %>
+        <div class="info">
+          <div class="first_info common">
+            <div>
+              <b>Quiz Title : &nbsp;</b>
+              <div><%= resultQuiz.title %></div>
+            </div>
+            <div class="edit-icons-box">
+              <img
+                src="https://cdn.hugeicons.com/icons/pencil-edit-02-stroke-rounded.svg"
+                alt="pencil-edit-02"
+                width="28"
+                height="28"
+                class="edit-head-btn"
+              />
+              <img
+                src="https://cdn.hugeicons.com/icons/cancel-01-stroke-rounded.svg"
+                alt="cancel-01"
+                width="28"
+                height="28"
+                style="display: none"
+                class="cancel-head-btn"
+              />
+            </div>
+          </div>
+          <div class="second_info common">
+            <div>
+              <b> Description : &nbsp;</b>
+              <div><%= resultQuiz.description %></div>
+            </div>
+            <div class="edit-icons-box">
+              <img
+                src="https://cdn.hugeicons.com/icons/pencil-edit-02-stroke-rounded.svg"
+                alt="pencil-edit-02"
+                width="28"
+                height="28"
+                class="edit-head-btn"
+              />
+              <img
+                src="https://cdn.hugeicons.com/icons/cancel-01-stroke-rounded.svg"
+                alt="cancel-01"
+                width="28"
+                height="28"
+                style="display: none"
+                class="cancel-head-btn"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="question">
+        <div class="total">
+          <ul>
+            <li>Questions :</li>
+            <li>Total Question : <%= questions.length | 0 %></li>
+          </ul>
+        </div>
+        <div class="new">
+          <% if (locals.questions) { %> <% questions.forEach((q , i) => { %>
+          <div class="Q_first">
+            <div class="inside_1">
+              <ul>
+                <li>Point : <%= q.questionId.points %></li>
+                <li><%= i + 1 %> / <%= questions.length %></li>
+                <li>
+                  <a
+                    title="Delete Question"
+                    href="/quiz/delete/question/<%= quizId %>/<%= q.questionId._id %>"
+                    ><img src="/delete-bin.svg" alt="img"
+                  /></a>
+                </li>
+              </ul>
+            </div>
+            <div class="inside pad">
+              <div>
+                <b> Question : &nbsp;</b>
+                <div class="editable-box"><%= q.questionId.question %></div>
+              </div>
+              <div class="edit-icons-box">
+                <img
+                  src="https://cdn.hugeicons.com/icons/pencil-edit-02-stroke-rounded.svg"
+                  alt="pencil-edit-02"
+                  width="28"
+                  height="28"
+                  id="edit-icon"
+                />
+                <img
+                  src="https://cdn.hugeicons.com/icons/cancel-01-stroke-rounded.svg"
+                  alt="cancel-01"
+                  width="28"
+                  height="28"
+                  style="display: none"
+                  class="cancel-icon"
+                />
+              </div>
+            </div>
+            <div class="inside pad">
+              <div>
+                <b>choice-1 : &nbsp;</b>
+                <div class="editable-box"><%= q.questionId.choices[0] %></div>
+              </div>
+              <div class="edit-icons-box">
+                <img
+                  src="https://cdn.hugeicons.com/icons/pencil-edit-02-stroke-rounded.svg"
+                  alt="pencil-edit-02"
+                  width="28"
+                  height="28"
+                  id="edit-icon"
+                />
+                <img
+                  src="https://cdn.hugeicons.com/icons/cancel-01-stroke-rounded.svg"
+                  alt="cancel-01"
+                  width="28"
+                  height="28"
+                  style="display: none"
+                  class="cancel-icon"
+                />
+              </div>
+            </div>
+            <div class="inside pad">
+              <div>
+                <b>choice-2 : &nbsp;</b>
+                <div class="editable-box"><%= q.questionId.choices[1] %></div>
+              </div>
+              <div class="edit-icons-box">
+                <img
+                  src="https://cdn.hugeicons.com/icons/pencil-edit-02-stroke-rounded.svg"
+                  alt="pencil-edit-02"
+                  width="28"
+                  height="28"
+                  id="edit-icon"
+                />
+                <img
+                  src="https://cdn.hugeicons.com/icons/cancel-01-stroke-rounded.svg"
+                  alt="cancel-01"
+                  width="28"
+                  height="28"
+                  style="display: none"
+                  class="cancel-icon"
+                />
+              </div>
+            </div>
+            <div class="inside pad">
+              <div>
+                <b>choice-3 : &nbsp;</b>
+                <div class="editable-box"><%= q.questionId.choices[2] %></div>
+              </div>
+              <div class="edit-icons-box">
+                <img
+                  src="https://cdn.hugeicons.com/icons/pencil-edit-02-stroke-rounded.svg"
+                  alt="pencil-edit-02"
+                  width="28"
+                  height="28"
+                  id="edit-icon"
+                />
+                <img
+                  src="https://cdn.hugeicons.com/icons/cancel-01-stroke-rounded.svg"
+                  alt="cancel-01"
+                  width="28"
+                  height="28"
+                  style="display: none"
+                  class="cancel-icon"
+                />
+              </div>
+            </div>
+            <div class="inside pad">
+              <div>
+                <b>choice-4 : &nbsp;</b>
+                <div class="editable-box"><%= q.questionId.choices[3] %></div>
+              </div>
+              <div class="edit-icons-box">
+                <img
+                  src="https://cdn.hugeicons.com/icons/pencil-edit-02-stroke-rounded.svg"
+                  alt="pencil-edit-02"
+                  width="28"
+                  height="28"
+                  id="edit-icon"
+                />
+                <img
+                  src="https://cdn.hugeicons.com/icons/cancel-01-stroke-rounded.svg"
+                  alt="cancel-01"
+                  width="28"
+                  height="28"
+                  style="display: none"
+                  class="cancel-icon"
+                />
+              </div>
+            </div>
+            <div class="correct">
+              <a>Show Answer </a
+              ><i id="eye" class="fa-regular fa-eye-slash"></i>
+            </div>
+            <div style="display: none" class="inside pad hidden">
+              <div>
+                <b>Answer : &nbsp;</b>
+                <div class="editable-box">
+                  <%= q.questionId.correctChoice %>
+                </div>
+              </div>
+              <div class="edit-icons-box">
+                <img
+                  src="https://cdn.hugeicons.com/icons/pencil-edit-02-stroke-rounded.svg"
+                  alt="pencil-edit-02"
+                  width="28"
+                  height="28"
+                  id="edit-icon"
+                />
+                <img
+                  src="https://cdn.hugeicons.com/icons/cancel-01-stroke-rounded.svg"
+                  alt="cancel-01"
+                  width="28"
+                  height="28"
+                  style="display: none"
+                  class="cancel-icon"
+                />
+              </div>
+            </div>
+          </div>
+          <% }) %> <% } %>
+        </div>
+        <form
+          action="/quiz/edit/<%= quizId %>"
+          method="post"
+          id="form-input"
+          class="question-form"
+        >
+          <div class="form-heading">Question Form</div>
+          <div class="inside-form pad">
+            <label for="question-input"><b> Question : &nbsp;</b></label>
+            <input
+              name="question"
+              id="question-input"
+              placeholder="Enter question"
+              class="form-input"
+              type="text"
+              required
+            />
+          </div>
+          <div class="inside-form">
+            <label for="choice1-input"><b>Choice-1 : &nbsp;</b></label
+            ><input
+              name="choice1"
+              placeholder="Enter choice-1"
+              id="choice1-input"
+              class="form-input"
+              type="text"
+              required
+            />
+          </div>
+          <div class="inside-form">
+            <label for="choice2-input"><b>Choice-2 : &nbsp;</b></label
+            ><input
+              name="choice2"
+              placeholder="Enter choice-2"
+              id="choice2-input"
+              class="form-input"
+              type="text"
+              required
+            />
+          </div>
+          <div class="inside-form">
+            <label for="choice3-input"><b>Choice-3 : &nbsp;</b></label
+            ><input
+              name="choice3"
+              placeholder="Enter choice-3"
+              id="choice3-input"
+              class="form-input"
+              type="text"
+              required
+            />
+          </div>
+          <div class="inside-form">
+            <label for="choice4-input"><b>Choice-4 : &nbsp;</b></label
+            ><input
+              name="choice4"
+              placeholder="Enter choice-4"
+              id="choice4-input"
+              class="form-input"
+              type="text"
+              required
+            />
+          </div>
+          <div class="inside-form">
+            <label for="correctChoice-input"
+              ><b>Correct Choice : &nbsp;</b></label
+            ><input
+              name="correctChoice"
+              placeholder="Enter correct-choice"
+              id="correctChoice-input"
+              class="form-input"
+              type="text"
+              required
+            />
+          </div>
+          <div class="inside-form-points">
+            <label for="points-input"><b>Points : &nbsp;</b></label
+            ><input
+              name="points"
+              id="points-input"
+              class="form-input"
+              type="number"
+              required
+            />
+          </div>
+          <div class="form-btns">
+            <button type="submit" id="save-btn" title="Save Question">
+              Save</button
+            ><button type="button" id="cancel-btn" title="Cancel">
+              cancel
+            </button>
+          </div>
+        </form>
+        <button class="plusbtn" title="Add New Question">+</button>
+        <% } else { %>
+        <div class="info">
+          <div class="first_info common">
+            <div><b>Quiz Title : &nbsp;</b> <%= resultQuiz.title %></div>
+          </div>
+          <div class="second_info common">
+            <div>
+              <b> Description : &nbsp;</b> <%= resultQuiz.description %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="question">
+        <div class="total">
+          <ul>
+            <li>Questions :</li>
+            <li>Total Question : <%= questions.length | 0 %></li>
+          </ul>
+        </div>
+        <div class="new">
+          <% if (locals.questions) { %> <% questions.forEach((q , i) => { %>
+          <div class="Q_first">
+            <div class="inside_1">
+              <ul>
+                <li></li>
+                <li><%= i + 1 %> / <%= questions.length %></li>
+                <li>Point : <%= q.questionId.points %></li>
+              </ul>
+            </div>
+            <div class="inside pad">
+              <div><b> Question : &nbsp;</b> <%= q.questionId.question %></div>
+            </div>
+            <div class="inside pad">
+              <div><b>choice-1 : &nbsp;</b> <%= q.questionId.choices[0] %></div>
+            </div>
+            <div class="inside pad">
+              <div><b>choice-2 : &nbsp;</b> <%= q.questionId.choices[1] %></div>
+            </div>
+            <div class="inside pad">
+              <div><b>choice-3 : &nbsp;</b> <%= q.questionId.choices[2] %></div>
+            </div>
+            <div class="inside pad">
+              <div><b>choice-4 : &nbsp;</b> <%= q.questionId.choices[3] %></div>
+            </div>
+            <div class="correct">
+              <a>Show Answer </a
+              ><i id="eye" class="fa-regular fa-eye-slash"></i>
+            </div>
+            <div style="display: none" class="inside pad hidden">
+              <div>
+                <b>Answer : &nbsp;</b> <%= q.questionId.correctChoice %>
+              </div>
+            </div>
+          </div>
+          <% }) %> <% } %>
+        </div>
+        <% } %>
+      </div>
+    </main>
+    <footer>
+      <div class="footer">All Rights Reserve | abcd@gmail.com</div>
+    </footer>
+  </body>
+  <script>
+    const quizId = window.location.pathname.split("/quiz/")[1];
+
+    const showAnswer = document.querySelectorAll(".correct");
+    const eyes = document.getElementById("eye");
+    const plusbtn = document.querySelector(".plusbtn");
+    const formInput = document.getElementById("form-input");
+    const cancelButton = document.getElementById("cancel-btn");
+    const editBtns = document.querySelectorAll("#edit-icon");
+    const cancelBtns = document.querySelectorAll(".cancel-icon");
+    const editBoxs = document.querySelectorAll(".editable-box");
+
+    const editHeadBtns = document.querySelectorAll(".edit-head-btn");
+    const cancelHeadBtns = document.querySelectorAll(".cancel-head-btn");
+
+    function redirectTo(url) {
+      window.location.href = url;
+    }
+
+    try {
+      editHeadBtns.forEach((editHeadBtn, index) => {
+        let oldValue;
+        let newValue;
+        editHeadBtn.addEventListener("click", () => {
+          const previousValue =
+            editHeadBtn.parentElement.previousElementSibling.lastElementChild;
+          let updateQuizDetails;
+          let attributeValue;
+          let sendData = false;
+          if (previousValue.isContentEditable) {
+            newValue = previousValue.innerText;
+            previousValue.contentEditable = "false";
+            previousValue.style.border = "none";
+            // Cross Btn
+            editHeadBtn.nextElementSibling.style.display = "none";
+            editHeadBtn.src =
+              "https://cdn.hugeicons.com/icons/pencil-edit-02-stroke-rounded.svg";
+
+            updateQuizDetails = { quizId, oldValue, newValue };
+            if (updateQuizDetails.oldValue !== updateQuizDetails.newValue) {
+              console.log("Value Updated!");
+              sendData = true;
+            } else {
+              console.log("Value Not Updated!");
+            }
+          } else {
+            oldValue = previousValue.innerText;
+            previousValue.contentEditable = "true";
+            previousValue.focus();
+            previousValue.style.border = "2px solid";
+            editHeadBtn.src =
+              "https://cdn.hugeicons.com/icons/tick-02-stroke-rounded.svg";
+            // Cross Btn
+            editHeadBtn.nextElementSibling.style.display = "block";
+          }
+
+          switch (index) {
+            case 0:
+              attributeValue = { attribute: "title" };
+              break;
+            case 1:
+              attributeValue = { attribute: "description" };
+              break;
+            default:
+              break;
+          }
+
+          if (sendData) {
+            // send Data
+            updateQuizDetails["attributeValue"] = attributeValue;
+
+            fetch(`/quiz/update-quiz-details/${quizId}`, {
+              method: "PATCH",
+              headers: { "Content-Type": "application/json" },
+              redirect: "follow",
+              body: JSON.stringify(updateQuizDetails),
+            })
+              .then((data) => {})
+              .catch((error) => {
+                console.error("Fetch error:", error);
+              });
+            console.log("Data Send Successfully!");
+          }
+
+          cancelHeadBtns.forEach((cancelbtn) => {
+            //   console.log('Cancel Btn Clicked!');
+            cancelbtn.addEventListener("click", () => {
+              // console.log("Cancel Btn Clicked!");
+              previousValue.contentEditable = "false";
+              previousValue.style.border = "none";
+              previousValue.innerText = oldValue;
+              editHeadBtn.nextElementSibling.style.display = "none";
+              editHeadBtn.src =
+                "https://cdn.hugeicons.com/icons/pencil-edit-02-stroke-rounded.svg";
+            });
+          });
+        });
+      });
+    } catch (error) {
+      console.log("Failed to Update Quiz Details.", error);
+    }
+
+    try {
+      editBtns.forEach((editbtn, index) => {
+        let oldValue;
+        let newValue;
+        let attributeIndex = Math.floor(index % 6);
+  
+        editbtn.addEventListener("click", () => {
+          const previousValue =
+            editbtn.parentElement.previousElementSibling.lastElementChild;
+          let updateData;
+          let sendData = false;
+  
+          if (previousValue.isContentEditable) {
+            newValue = previousValue.innerText;
+            previousValue.contentEditable = "false";
+            previousValue.style.border = "none";
+            // Cross Btn
+            editbtn.nextElementSibling.style.display = "none";
+            editbtn.src =
+              "https://cdn.hugeicons.com/icons/pencil-edit-02-stroke-rounded.svg";
+  
+            updateData = { quizId, oldValue, newValue };
+            if (updateData.oldValue !== updateData.newValue) {
+              console.log("Value Updated!");
+              sendData = true;
+            } else {
+              console.log("Value Not Updated!");
+            }
+          } else {
+            oldValue = previousValue.innerText;
+            previousValue.contentEditable = "true";
+            previousValue.focus();
+            previousValue.style.border = "2px solid";
+            editbtn.src =
+              "https://cdn.hugeicons.com/icons/tick-02-stroke-rounded.svg";
+            // Cross Btn
+            editbtn.nextElementSibling.style.display = "block";
+          }
+  
+          let attributeValue;
+          switch (attributeIndex) {
+            case 0:
+              attributeValue = { attribute: "question" };
+              break;
+            case 1:
+              attributeValue = { attribute: "choice", index: 0 };
+              break;
+            case 2:
+              attributeValue = { attribute: "choice", index: 1 };
+              break;
+            case 3:
+              attributeValue = { attribute: "choice", index: 2 };
+              break;
+            case 4:
+              attributeValue = { attribute: "choice", index: 3 };
+              break;
+            case 5:
+              attributeValue = { attribute: "correctChoice" };
+              break;
+  
+            default:
+              break;
+          }
+  
+          if (sendData) {
+            // send Data
+            updateData["attributeValue"] = attributeValue;
+  
+            fetch(`/quiz/update-question/${quizId}`, {
+              method: "PATCH",
+              headers: { "Content-Type": "application/json" },
+              redirect: "follow",
+              body: JSON.stringify(updateData),
+            })
+              .then((data) => {})
+              .catch((error) => {
+                console.error("Fetch error:", error);
+              });
+            console.log("Data Send Successfully!");
+          }
+  
+          cancelBtns.forEach((cancelbtn) => {
+            //   console.log('Cancel Btn Clicked!');
+            cancelbtn.addEventListener("click", () => {
+              // console.log("Cancel Btn Clicked!");
+              previousValue.contentEditable = "false";
+              previousValue.style.border = "none";
+              previousValue.innerText = oldValue;
+              editbtn.nextElementSibling.style.display = "none";
+              editbtn.src =
+                "https://cdn.hugeicons.com/icons/pencil-edit-02-stroke-rounded.svg";
+            });
+          });
+        });
+      });
+    } catch (error) {
+      console.log("Failed to Update Question Details.", error);
+    }
+
+    showAnswer.forEach((e) => {
+      e.addEventListener("click", () => {
+        console.log(e.lastElementChild);
+
+        const views = e.nextElementSibling;
+        const eye = e.lastElementChild;
+        if (views.style.display == "none") {
+          eye.classList.add("fa-eye");
+          eye.classList.remove("fa-eye-slash");
+          views.style.display = "flex";
+        } else {
+          views.style.display = "none";
+          eye.classList.add("fa-eye-slash");
+          eye.classList.remove("fa-eye");
+        }
+      });
+    });
+
+    try {
+      plusbtn.addEventListener("click", () => {
+        if (formInput.style.display == "flex") {
+          plusbtn.style.display = "flex";
+          formInput.style.display = "none";
+        } else {
+          formInput.style.display = "flex";
+          plusbtn.style.display = "none";
+        }
+      });
+
+      cancelButton.addEventListener("click", () => {
+        plusbtn.style.display = "flex";
+        formInput.style.display = "none";
+      });
+    } catch (error) {}
+  </script>
+</html>
